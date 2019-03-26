@@ -84,7 +84,7 @@ public class UserApprovalSubmissionEndpointHandler implements Handler<RoutingCon
         authorizationRequest.setApprovalParameters(approvalParameters);
 
         // handle approval response
-        approvalService.saveApproval(authorizationRequest, client, endUser.getUsername())
+        approvalService.saveApproval(authorizationRequest, client, endUser)
                 .subscribe(authorizationRequest1 -> {
                     // user denied access
                     if (!authorizationRequest.isApproved()) {

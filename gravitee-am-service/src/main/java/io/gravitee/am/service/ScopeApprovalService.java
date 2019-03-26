@@ -13,22 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.gravitee.am.gateway.handler.oauth2.approval;
+package io.gravitee.am.service;
 
-import io.gravitee.am.gateway.handler.oauth2.request.AuthorizationRequest;
-import io.gravitee.am.model.Client;
-import io.gravitee.am.model.User;
+import io.gravitee.am.model.oauth2.ScopeApproval;
+import io.reactivex.Completable;
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 
+import java.util.Set;
+
 /**
- * Approval service to obtain an authorization decision by asking the resource owner or by establishing approval via other means.
- *
  * @author Titouan COMPIEGNE (titouan.compiegne at graviteesource.com)
  * @author GraviteeSource Team
  */
-public interface ApprovalService {
+public interface ScopeApprovalService {
 
-    Single<AuthorizationRequest> checkApproval(AuthorizationRequest authorizationRequest, Client client, User user);
+    Maybe<ScopeApproval> findById(String id);
 
-    Single<AuthorizationRequest> saveApproval(AuthorizationRequest authorizationRequest, Client client, User user);
+    Single<Set<ScopeApproval>> findByDomainAndUser(String domain, String user);
+
+    Single<Set<ScopeApproval>> findByDomainAndUserAndClient(String domain, String user, String client);
+
+    Completable revoke(String consentId);
+
+    Completable revoke(String domain, String user);
+
+    Completable revoke(String domain, String user, String clientId);
 }

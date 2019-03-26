@@ -59,7 +59,7 @@ public class AuthorizationEndpointHandler extends AbstractAuthorizationEndpointH
 
     @Override
     public void handle(RoutingContext context) {
-        AuthorizationRequest request = resolveInitialAuthorizeRequest(context);
+        AuthorizationRequest request = createAuthorizationRequest(context);
 
         // The authorization server authenticates the resource owner and obtains
         // an authorization decision (by asking the resource owner or by establishing approval via other means).

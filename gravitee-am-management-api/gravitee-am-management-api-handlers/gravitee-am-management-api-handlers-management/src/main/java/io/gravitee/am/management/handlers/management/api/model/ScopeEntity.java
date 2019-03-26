@@ -15,28 +15,34 @@
  */
 package io.gravitee.am.management.handlers.management.api.model;
 
-import io.gravitee.am.model.Client;
+import io.gravitee.am.model.oauth2.Scope;
 
 /**
  * @author Titouan COMPIEGNE (titouan.compiegne at graviteesource.com)
  * @author GraviteeSource Team
  */
-public class ClientEntity {
+public class ScopeEntity {
 
     private String id;
-    private String clientId;
-    private String clientName;
+    private String key;
+    private String name;
+    private String description;
 
-    public ClientEntity(String id, String clientId, String clientName) {
-        this.id = id;
-        this.clientId = clientId;
-        this.clientName = clientName;
+    public ScopeEntity() {
     }
 
-    public ClientEntity(Client client) {
-        setId(client.getId());
-        setClientId(client.getClientId());
-        setClientName(client.getClientName());
+    public ScopeEntity(String id, String key, String name, String description) {
+        this.id = id;
+        this.key = key;
+        this.name = name;
+        this.description = description;
+    }
+
+    public ScopeEntity(Scope scope) {
+        setId(scope.getId());
+        setKey(scope.getKey());
+        setName(scope.getName());
+        setDescription(scope.getDescription());
     }
 
     public String getId() {
@@ -47,19 +53,27 @@ public class ClientEntity {
         this.id = id;
     }
 
-    public String getClientId() {
-        return clientId;
+    public String getKey() {
+        return key;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getClientName() {
-        return clientName;
+    public String getName() {
+        return name;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
